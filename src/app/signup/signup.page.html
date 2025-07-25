@@ -1,0 +1,60 @@
+
+
+<ion-content  class="m">
+  <ion-grid >
+    <ion-row>
+      <ion-col size="12" size-md="6" style="margin-left: auto; margin-right: auto;">
+  <div class="signup-container">
+    <!-- App Logo -->
+    <div class="logo">
+      <ion-row  class="b" id="bd"><img class="img" src="../../assets/logo.jpeg">
+        <ion-card class="kf"></ion-card>
+      </ion-row>
+    </div>
+<br><br>
+    <!-- Signup Form -->
+    <form (ngSubmit)="onSignup()" #signupForm="ngForm">
+      <!-- Full Name -->
+      <ion-item>
+        <ion-label position="floating">Username</ion-label>
+        <ion-input type="text" [(ngModel)]="username" name="username" required></ion-input>
+      </ion-item>
+
+      <!-- Email -->
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="email" name="email" required [ngClass]="{'error': !isValidEmail(email) && email.length > 0}"></ion-input>
+      </ion-item>
+      <!-- Display error message if email is invalid -->
+      <div *ngIf="email && !isValidEmail(email)" class="error-message" class="color">Please enter a valid email address.</div>
+      <!-- Phone Number -->
+      <ion-item>
+        <ion-label position="floating" >Phone Number</ion-label>
+        <ion-input type="tel" [(ngModel)]="phone" name="phone" required></ion-input>
+      </ion-item>
+
+      <!-- Password -->
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+      </ion-item>
+
+      <!-- Confirm Password -->
+      <ion-item>
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required></ion-input>
+      </ion-item>
+      <h2 class="color">{{ this.message}}</h2>
+      <!-- Sign Up Button -->
+      <ion-button class="custom-border" fill="outline" color="danger" type="submit">Sign Up</ion-button>
+    </form>
+
+    <!-- Login Link -->
+    <div class="login-link">
+      <p>Already have an account? <b routerLink="/login1" class="color">Log In</b></p>
+      
+    </div>
+  </div></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

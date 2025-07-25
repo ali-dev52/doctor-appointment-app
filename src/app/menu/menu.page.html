@@ -1,0 +1,81 @@
+<ion-header color="primary">
+  <ion-toolbar class="custom-toolbar">
+    <ion-title class="custom-title">
+      <ion-icon name="person-circle" slot="start" class="header-icon"></ion-icon>
+      <h1>Hello, {{ user.username }}!</h1>
+      <p>Hope you're doing great today.</p>
+    </ion-title>
+    <ion-button class="flot" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+      Logout
+    </ion-button>
+    <ion-searchbar
+      [(ngModel)]="searchText"
+      (ionInput)="filterDoctors()"
+      placeholder="Search doctors by name"
+      debounce="300"
+    ></ion-searchbar>
+
+    <ion-title class="custom-title"><p>Categories</p></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list class="page-background">
+    <!-- Categories -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" size-md="3" *ngFor="let cat of categories">
+          <ion-card class="category-card" (click)="filterByCategory(cat.title)">
+            <img [src]="cat.image" class="category-img" />
+            <ion-card-content class="category-title">{{ cat.title }}</ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-button expand="block" color="medium" (click)="clearCategory()" *ngIf="selectedCategory">
+      Clear Category Filter
+    </ion-button>
+
+    <!-- Top Doctors Section -->
+    <ion-list class="section1">
+      <ion-label>
+        <h2>OUR TOP DOCTORS</h2>
+        <p>Meet our most trusted experts</p>
+      </ion-label>
+    </ion-list>
+
+    <!-- Doctors List -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-sm="6" size-md="4" *ngFor="let doctor of filteredDoctors">
+          <ion-card class="doctor-card">
+            <div class="doctor-header">
+              <img class="doc-avatar" [src]="'assets/default-doc.jpg'" />
+              <div class="doc-info">
+                <h2><b>{{ doctor.name }}</b></h2>
+                <p>{{ doctor.specialization }}</p>
+                <p>{{ doctor.qualification }}</p>
+              </div>
+            </div>
+
+            <div class="clinic-info" *ngIf="doctor.clinic_name">
+              <ion-label>
+                <p><strong>Clinic:</strong> {{ doctor.clinic_name }}</p>
+                <p><strong>City:</strong> {{ doctor.city }}</p>
+                <p><strong>Address:</strong> {{ doctor.address }}</p>
+                <p><strong>Routine Fee:</strong> Rs. {{ doctor.fee_routine }}</p>
+                <p><strong>Emergency Fee:</strong> Rs. {{ doctor.fee_emergency }}</p>
+              </ion-label>
+            </div>
+
+            <ion-button expand="block" color="medium" shape="round" (click)="appointment(doctor)">
+              Send Request
+            </ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,40 @@
+
+
+<ion-content [fullscreen]="true">
+  <ion-list class="f">
+    <ion-row  class="b" id="bd"><img class="img" src="../../assets/logo.jpeg">
+      <ion-card class="kf"></ion-card>
+    </ion-row>
+    <h1 class="text"> <b>D&nbsp;O&nbsp;C&nbsp;T&nbsp;O&nbsp;R </b></h1>
+    <br>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+
+    <ion-row class="cd">
+      <h1><b> Login</b></h1>
+      <ion-col size="12" class="as">
+        <ion-item>
+          <ion-label for="email" position="floating">Email</ion-label>
+          <ion-input id="email" type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label for="password" position="floating">Password</ion-label>
+          <ion-input id="password" type="password" [(ngModel)]="password" name="password" required></ion-input>
+        </ion-item>
+        
+      </ion-col>
+      
+      <ion-col size="12" size-md="12" size-sm="12" >
+        <ion-button  class="custom-border" fill="outline" color="danger" (click)="login()">Login</ion-button>
+       
+      </ion-col>
+      <ion-col  size="12" size-md="12" size-sm="12">
+        <p>Don't have an account? <b style="color: #D00020" (click)="navigateToOtherPage()"> Register!</b></p>
+        <br>
+      </ion-col>
+
+    </ion-row>
+  </form>
+  </ion-list>
+</ion-content>
+

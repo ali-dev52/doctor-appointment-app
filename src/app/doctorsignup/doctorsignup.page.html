@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Doctor Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (submit)="register()" class="form-container" autocomplete="off">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Register as Doctor</ion-card-title>
+        <ion-card-subtitle>Fill in your details below</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-item>
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-input
+            label="Name"
+            label-placement="floating"
+            placeholder="Enter full name"
+            [(ngModel)]="doctor.name"
+            name="name"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="call-outline" slot="start"></ion-icon>
+          <ion-input
+            label="Phone"
+            label-placement="floating"
+            placeholder="Enter phone number"
+            [(ngModel)]="doctor.phone"
+            name="phone"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-input
+            label="Email"
+            label-placement="floating"
+            type="email"
+            placeholder="Enter email"
+            [(ngModel)]="doctor.email"
+            name="email"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="medkit-outline" slot="start"></ion-icon>
+          <ion-input
+            label="Specialization"
+            label-placement="floating"
+            placeholder="e.g. Cardiology"
+            [(ngModel)]="doctor.specialization"
+            name="specialization"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="school-outline" slot="start"></ion-icon>
+          <ion-input
+            label="Qualification"
+            label-placement="floating"
+            placeholder="e.g. MBBS, MD"
+            [(ngModel)]="doctor.qualification"
+            name="qualification"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-input
+            label="Password"
+            label-placement="floating"
+            type="password"
+            placeholder="Enter password"
+            [(ngModel)]="doctor.password"
+            name="password"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="lock-open-outline" slot="start"></ion-icon>
+          <ion-input
+            label="Confirm Password"
+            label-placement="floating"
+            type="password"
+            placeholder="Re-enter password"
+            [(ngModel)]="doctor.confirmpassword"
+            name="confirmpassword"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" color="success" class="ion-margin-top">
+          Register Doctor
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
+  </form>
+</ion-content>

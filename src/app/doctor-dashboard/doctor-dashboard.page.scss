@@ -1,0 +1,210 @@
+
+:host {
+  --ion-background-color: var(--background, #f8fafc);
+}
+
+.dashboard-title {
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-align: center;
+  color: var(--ion-text-color, #ffffff);
+}
+
+.hoverable {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.shortcut-grid {
+  margin-bottom: 1rem;
+}
+
+.shortcut-card {
+  background: linear-gradient(135deg, #c7d2fe, #60a5fa);
+  color: #1e3a8a;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.shortcut-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.2rem 0.5rem;
+}
+
+.shortcut-icon {
+  font-size: 2.5rem;
+  color: #2563eb;
+  margin-bottom: 0.5rem;
+}
+
+.shortcut-label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.profile-card {
+  margin-top: 1rem;
+  background: #ffffff;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.doc-name {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.specialization {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.appointment-item {
+  --background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.stats-grid {
+  margin-top: 1rem;
+}
+
+.stat-card {
+  text-align: center;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s;
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+.stat-card h3 {
+  font-size: 1.4rem;
+  color: #1d4ed8;
+  margin: 0;
+}
+
+.stat-card p {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.clinic-banner {
+ 
+  color: #fff;
+  text-align: center;
+  padding: 20px 16px;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  margin-bottom: 16px;
+  transform: translateY(-20px);
+  opacity: 0;
+  animation: slideFadeIn 0.8s ease-out forwards;
+}
+
+.clinic-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.clinic-subtitle {
+  font-size: 15px;
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  color: #e0f7fa;
+}
+
+@keyframes slideFadeIn {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.card-animate {
+  animation: cardBounce 0.5s ease-out;
+}
+
+@keyframes cardBounce {
+  0% {
+    transform: scale(0.97);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+body.dark {
+  --background: #0d1117;
+  --ion-text-color: #f0f6fc;
+
+  .profile-card,
+  .shortcut-card,
+  .stat-card,
+  .appointment-item {
+    background: #161b22 !important;
+    color: #f0f6fc;
+  }
+
+  .shortcut-label,
+  .doc-name,
+  .specialization {
+    color: #c9d1d9;
+  }
+
+  .stat-card h3 {
+    color: #58a6ff;
+  }
+
+  .clinic-banner {
+    background: linear-gradient(135deg, #0d1117, #0ea5e9);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+  }
+
+  .clinic-title {
+    color: #ffffff;
+  }
+
+  .clinic-subtitle {
+    color: #dbeafe;
+  }
+}
+
+@media (max-width: 768px) {
+  .clinic-title {
+    font-size: 20px;
+  }
+
+  .clinic-subtitle {
+    font-size: 13px;
+  }
+
+  .stat-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .shortcut-icon {
+    font-size: 2rem;
+  }
+}
+@import '@ionic/angular/css/palettes/dark.class.css';
+.custom-toolbar {
+  --background: linear-gradient(135deg, #341a1a, #2575b2);
+  --color: white;
+}

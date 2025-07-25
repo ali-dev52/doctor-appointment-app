@@ -1,0 +1,106 @@
+<ion-header translucent>
+  <ion-toolbar class="custom-toolbar" >
+    <ion-title class="ion-text-center">📅 Book Appointment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding custom-bg">
+
+  <ion-card class="profile-card">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img [src]="selectedDoctor.profile || 'assets/default-doc.jpg'" />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="doc-name">{{ selectedDoctor.name }}</h2>
+        <p class="doc-special">{{ selectedDoctor.specialization }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="form-card">
+    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+      
+      <ion-list>
+
+        <ion-item>
+          <ion-icon slot="start" name="person-circle-outline" color="primary"></ion-icon>
+          <ion-label position="floating">Full Name</ion-label>
+          <ion-input formControlName="name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" name="call-outline" color="primary"></ion-icon>
+          <ion-label position="floating">Phone Number</ion-label>
+          <ion-input formControlName="phone" type="tel"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" name="medkit-outline" color="primary"></ion-icon>
+          <ion-label position="floating">Doctor</ion-label>
+          <ion-input formControlName="doctor" readonly></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" name="calendar-outline" color="primary"></ion-icon>
+          <ion-label position="floating">Select Date</ion-label>
+          <ion-datetime
+            formControlName="datetime"
+            [min]="minDate"
+            presentation="date"
+            display-format="MMM dd, yyyy"
+          ></ion-datetime>
+        </ion-item>
+
+        <div *ngIf="availableSlots.length > 0" class="slot-section ion-padding-horizontal">
+          <ion-text color="primary">
+            <h3>Available Time Slots</h3>
+          </ion-text>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6" size-md="4" *ngFor="let slot of availableSlots">
+                <ion-card
+                  [color]="selectedSlot?.time === slot.time ? 'primary' : 'light'"
+                  (click)="selectedSlot = slot"
+                  class="slot-card"
+                >
+                  <ion-card-content class="ion-text-center">
+                    <h3>{{ slot.time }}</h3>
+                    <p>Token #{{ slot.token_number }}</p>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+
+        <div *ngIf="availableSlots.length === 0 && dateOnly" class="ion-text-center ion-padding">
+          <ion-text color="medium">
+            <p>No available slots for selected date.</p>
+          </ion-text>
+        </div>
+
+        <ion-item>
+          <ion-icon slot="start" name="document-text-outline" color="primary"></ion-icon>
+          <ion-label position="floating">Notes / Symptoms</ion-label>
+          <ion-textarea formControlName="notes" autoGrow="true"></ion-textarea>
+        </ion-item>
+
+      </ion-list>
+
+      <div class="button-wrapper ion-padding">
+        <ion-button
+          expand="block"
+          type="submit"
+          color="medium"
+          shape="round"
+          [disabled]="!appointmentForm.valid || !selectedSlot"
+        >
+          ✅ Submit Appointment
+        </ion-button>
+      </div>
+
+    </form>
+  </ion-card>
+</ion-content>

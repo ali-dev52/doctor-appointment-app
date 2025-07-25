@@ -1,0 +1,179 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-toolbar class="custom-toolbar">
+      <div class="clinic-banner animate-in">
+        <ion-title class="dashboard-title">Doctor Dashboard</ion-title>
+        <h2 class="clinic-title">{{ clinicInfo?.clinic_name }}</h2>
+        <p class="clinic-subtitle">
+          <ion-icon name="location-outline" color="light"></ion-icon>
+          {{ clinicInfo?.address }}, {{ clinicInfo?.city }}
+        </p>
+      </div>
+    </ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding custom-bg">
+  <!-- Shortcuts -->
+  <ion-grid class="shortcut-grid">
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="shortcut-card hoverable card-animate" (click)="goToClinicInfoForm()">
+          <div class="shortcut-content">
+            <ion-icon name="business-outline" class="shortcut-icon"></ion-icon>
+            <ion-label class="shortcut-label">Edit Clinic Info</ion-label>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Doctor Profile -->
+  <ion-card class="profile-card hoverable card-animate">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img [src]="doctor.profile || 'assets/default-doc.jpg'" alt="Doctor Photo" />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="doc-name">{{ doctor.name }}</h2>
+        <p class="specialization">{{ doctor.specialization }}</p>
+      </ion-label>
+      <ion-button slot="end" color="primary" fill="outline" (click)="editProfile()">Edit</ion-button>
+    </ion-item>
+  </ion-card>
+
+  <!-- Availability & Fee Cards -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" sizeMd="6">
+        <ion-card class="hoverable card-animate">
+          <ion-card-header>
+            <ion-card-title>Availability</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-toggle [(ngModel)]="doctor.isAvailable">Available</ion-toggle>
+            <ion-button size="small" color="success" fill="outline" (click)="openAvailabilityModal()">Set Times</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" sizeMd="6">
+        <ion-card class="hoverable card-animate">
+          <ion-card-header>
+            <ion-card-title>Consultation Fee</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong><b>Routine Fee:</b></strong> {{ clinicInfo?.fee_routine}} PKR</p>
+            <p><strong>Emergency Fee:</strong> {{ clinicInfo?.fee_emergency}} PKR</p>
+            <ion-button size="small" color="warning" (click)="goToClinicInfoForm()">Change</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Appointments Section -->
+  <ion-card class="hoverable card-animate">
+    <ion-card-header>
+      <ion-card-title>Appointments</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngIf="appointments.length > 0; else noAppointments">
+        <ion-item *ngFor="let appointment of appointments" class="appointment-item">
+          <ion-label>
+            <h2>{{ appointment.patient_name }}</h2>
+            <p>Date: {{ appointment.date | date: 'mediumDate' }} | Time: {{ appointment.time }}</p>
+            <p><strong>Token:</strong> {{ appointment.token_number }}</p>
+            <p><strong>Notes:</strong> {{ appointment.notes || 'N/A' }}</p>
+          </ion-label>
+
+          <!-- Spinner if loading -->
+          <ion-spinner *ngIf="loadingAppointments[appointment.id]" name="dots"></ion-spinner>
+
+          <!-- Accept / Reject buttons (disabled if loading) -->
+          <ion-button
+            color="success"
+            fill="outline"
+            [disabled]="loadingAppointments[appointment.id]"
+            (click)="acceptAppointment(appointment.id)">
+            Accept
+          </ion-button>
+          <ion-button
+            color="danger"
+            fill="outline"
+            [disabled]="loadingAppointments[appointment.id]"
+            (click)="rejectAppointment(appointment.id)">
+            Reject
+          </ion-button>
+        </ion-item>
+      </ion-list>
+
+      <!-- Empty state -->
+      <ng-template #noAppointments>
+        <ion-item>
+          <ion-label>No new appointment requests at the moment.</ion-label>
+        </ion-item>
+      </ng-template>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="hoverable card-animate">
+    <ion-card-header>
+      <ion-card-title>Broadcast Message to Patients</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+  
+      <ng-container *ngIf="!isSendingMessage; else sending">
+        <ion-item>
+          <ion-label position="stacked">Select Date</ion-label>
+          <ion-datetime display-format="YYYY-MM-DD" [(ngModel)]="messageDate"></ion-datetime>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label position="stacked">Message</ion-label>
+          <ion-textarea [(ngModel)]="doctorMessage" autoGrow="true"></ion-textarea>
+        </ion-item>
+  
+        <ion-button expand="block" color="dark" (click)="sendMessageToPatients()">Send Message</ion-button>
+      </ng-container>
+  
+      <!-- Loading Spinner -->
+      <ng-template #sending>
+        <ion-spinner name="dots" color="primary"></ion-spinner>
+        <p>Sending message to patients...</p>
+      </ng-template>
+  
+      <!-- Success/Error -->
+      <ion-text color="success" *ngIf="messageSuccess">{{ messageSuccess }}</ion-text>
+      <ion-text color="danger" *ngIf="messageError">{{ messageError }}</ion-text>
+    </ion-card-content>
+  </ion-card>
+  
+  <!-- Stats Section -->
+  <ion-grid class="stats-grid">
+    <ion-row>
+      <ion-col size="4">
+        <ion-card class="stat-card hoverable card-animate">
+          <ion-card-content>
+            <h3>40</h3>
+            <p>Total</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card class="stat-card hoverable card-animate">
+          <ion-card-content>
+            <h3>30</h3>
+            <p>Completed</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card class="stat-card hoverable card-animate">
+          <ion-card-content>
+            <h3>10</h3>
+            <p>Cancelled</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Clinic Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Enter Clinic Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Clinic Name</ion-label>
+        <ion-input [(ngModel)]="clinicName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">City</ion-label>
+        <ion-input [(ngModel)]="city"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Address</ion-label>
+        <ion-textarea [(ngModel)]="address"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Routine Fee</ion-label>
+        <ion-input type="number" [(ngModel)]="feeRoutine"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Emergency Fee</ion-label>
+        <ion-input type="number" [(ngModel)]="feeEmergency"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Daily Patient Limit</ion-label>
+        <ion-input type="number" [(ngModel)]="dailyPatientLimit"></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="saveClinicInfo()">Save Info</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

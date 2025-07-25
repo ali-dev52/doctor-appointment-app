@@ -1,0 +1,36 @@
+.custom-bg {
+  background: linear-gradient(to bottom, #f7f8fc, #e0ecff);
+}
+
+.profile-card {
+  margin-top: 20px;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.doc-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.doc-special {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.form-card {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.button-wrapper {
+  margin: 20px 0 10px;
+}
+.custom-toolbar {
+  --background: linear-gradient(135deg, #341a1a, #2575b2);
+  --color: white;
+}

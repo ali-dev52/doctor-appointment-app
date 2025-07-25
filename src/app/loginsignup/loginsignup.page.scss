@@ -1,0 +1,132 @@
+.a{
+    height: 100vh;
+    width: 100%;
+    background-color:white;
+    border:solid  whitesmoke
+}
+.b{
+    height: 65%;
+    width: 100%;
+    border: solid 1px #D00020  ;
+    background-color: #D00020  ;
+    color: white;
+    display: flex;
+  flex-direction: column;
+}
+.c{
+    margin-left: 20px;
+    margin-right: 5%;
+    margin-top: auto;
+    
+    height: auto;
+    background-color: transparent;
+
+}
+.d{
+    font-family:sans-serif;
+    font-size: xx-large;
+}
+.e{
+    margin-top: 30px;
+    border: solid px black;
+}
+ion-button.custom-border {
+    --background: white;  /* Set background to white */
+    
+    --color: #D00020      /* Set text color to black (default text color) */
+    
+    width: 30%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  /* Fullscreen background */
+.hero-row {
+    min-height: 100vh;
+    background:#ebb1b1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Glass-style card */
+  .glass-card {
+    background: linear-gradient(135deg, #dab4b4, #fff6f6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 5.2s ease;
+  
+    /* Mobile-first full width */
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+  }
+  
+  /* Headline text */
+  .headline {
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    color: #D00020;
+    text-align: center;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  /* Buttons section */
+  .button-col {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* Button styling */
+  ion-button.custom-border {
+    --background: white;
+    --color: #D00020;
+    --border-color: #D00020;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    max-width: 200px;
+    margin: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  ion-button.custom-border:hover {
+    --background: #D00020;
+    --color: white;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(208, 0, 32, 0.3);
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Desktop styles — center and fix card size */
+  @media (min-width: 768px) {
+    .glass-card {
+      width: 400px;
+      height: 400px;
+    }
+  
+    .headline {
+      font-size: 2.2rem;
+    }
+  }
+  
